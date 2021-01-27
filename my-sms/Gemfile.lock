@@ -91,6 +91,11 @@ GEM
       ffi (~> 1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    reek (1.3.7)
+      rainbow
+      ruby2ruby (~> 2.0.8)
+      ruby_parser (~> 3.3)
+      sexp_processor
     rexml (3.2.4)
     rubocop (0.81.0)
       jaro_winkler (~> 1.5.1)
@@ -101,6 +106,11 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
     ruby-progressbar (1.11.0)
+    ruby2ruby (2.0.8)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.0)
+    ruby_parser (3.15.1)
+      sexp_processor (~> 4.9)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -110,6 +120,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sexp_processor (4.15.2)
     sprockets (2.1.4)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -132,6 +143,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (= 0.3.20)
   rails (= 3.2.0)
+  reek
   rubocop
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
