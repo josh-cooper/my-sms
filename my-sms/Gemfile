@@ -12,6 +12,10 @@ gem 'rubocop'
 gem 'reek'
 gem 'byebug'
 
+group :development do
+  gem 'spring-commands-rspec'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
 end
