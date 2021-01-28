@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :student do
-    title 'MyString'
-    first_name 'MyString'
-    middle_name 'MyString'
-    last_name 'MyString'
-    email 'MyString'
-    birth_date '2021-01-28'
-    gender 'MyString'
+    title { %w[Mr Mrs Miss Ms].sample }
+    first_name 'John'
+    middle_name 'Alan'
+    last_name 'Smith'
+    sequence(:email) { |n| "user#{n}@example.com" }
+    birth_date 10.years.ago
+    gender { ['male', 'female', nil].sample }
   end
 end
