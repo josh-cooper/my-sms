@@ -113,13 +113,9 @@ GEM
       psych (~> 3.1.0)
       rainbow (>= 2.0, < 4.0)
     rexml (3.2.4)
-    rspec (3.10.0)
-      rspec-core (~> 3.10.0)
-      rspec-expectations (~> 3.10.0)
-      rspec-mocks (~> 3.10.0)
-    rspec-core (3.10.1)
-      rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.1)
+    rspec-core (3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-expectations (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-mocks (3.10.2)
@@ -175,7 +171,7 @@ DEPENDENCIES
   mysql2 (= 0.3.20)
   rails (~> 3.2.0)
   reek
-  rspec
+  rspec-rails (~> 3.6.0)
   rubocop
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
