@@ -32,7 +32,35 @@ RSpec.describe Student, type: :model do
     expect(student.errors[:last_name]).to include('can\'t be blank')
   end
 
+  it 'is invalid without an email' do
+    student = FactoryBot.build(:student, email: nil)
+    student.valid?
+    expect(student.errors[:email]).to include('can\'t be blank')
+  end
+
+  it 'is invalid without a birth date' do
+    student = FactoryBot.build(:student, birth_date: nil)
+    student.valid?
+    expect(student.errors[:birth_date]).to include('can\'t be blank')
+  end
+
+  it 'is valid without a title' do
+    expect(FactoryBot.build(:student, title: nil)).to be_valid
+  end
+
   it 'is valid without a gender' do
     expect(FactoryBot.build(:student, gender: nil)).to be_valid
+  end
+
+  it 'is valid without a middle name' do
+    expect(FactoryBot.build(:student, middle_name: nil)).to be_valid
+  end
+
+  it 'is invalid with an incorrect format' do
+    aggregate_failures do
+      expect(FactoryBot.build(:student, email: 'invalid')).to_not be_valid
+      expect(FactoryBot.build(:student, email: 'invalid.com')).to_not be_valid
+      expect(FactoryBot.build(:student, email: 'invalid@')).to_not be_valid
+    end
   end
 end
