@@ -23,5 +23,8 @@ Metrics/BlockLength:
     - "**/*.rake"
     - "spec/**/*.rb"
 
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: true
+
+AllCops:
+  DisplayCopNames: true
