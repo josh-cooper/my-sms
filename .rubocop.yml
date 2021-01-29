@@ -17,11 +17,12 @@ Metrics/ModuleLength:
   Max: 250
 
 Metrics/BlockLength:
+  Enabled: false
   Exclude:
     - "app/admin/**/*"
     - "Rakefile"
     - "**/*.rake"
-    - "spec/**/*.rb"
+    - "**/spec/**/*.rb"
 
 Layout/TrailingEmptyLines:
   Enabled: true
