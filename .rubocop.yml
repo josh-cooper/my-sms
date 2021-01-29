@@ -1,0 +1,20 @@
+Metrics/AbcSize:
+  Description: >-
+    A calculated magnitude based on number of assignments,
+    branches, and conditions.
+  Reference: "http://c2.com/cgi/wiki?AbcMetric"
+  Enabled: true
+  Max: 20
+
+Metrics/ClassLength:
+  Description: "Avoid classes longer than 250 lines of code."
+  Enabled: true
+  Max: 250
+
+Metrics/ModuleLength:
+  Description: "Avoid modules longer than 250 lines of code."
+  Enabled: true
+  Max: 250
+
+Layout/TrailingBlankLines:
+  Enabled: true
