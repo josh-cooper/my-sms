@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: swordfish
+      MYSQL_DATABASE: mysms
+    ports:
+      - "3306:3306"
+
+  rails:
+    build: .
+    command: tail -f /dev/null
+    volumes:
+      - .:/mySMS
+      - /mySMS/node_modules
+    environment:
+      DB_HOST: db
+      DB_PWD: example
+      DB_USER_NAME: root
+      DB_PORT: 3306
+    ports:
+      - "3000:3000"
+      # Ports required for debugging
+      - "1234:1234"
+      - "26166:26168"
+    depends_on:
+      - db
