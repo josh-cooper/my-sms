@@ -11,11 +11,4 @@ class Student < ActiveRecord::Base
                     format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: 'Must be a valid email' }
   validates :birth_date, presence: true
-
-  def full_name
-    "#{title + ' ' if title.present?}"\
-    "#{first_name} "\
-    "#{middle_name + ' ' if middle_name.present?}"\
-    "#{last_name}"
-  end
 end

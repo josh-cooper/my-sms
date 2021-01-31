@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @students = StudentDecorator.decorate_collection(Student.all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:id]).decorate
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.json
   def new
-    @student = Student.new
+    @student = Student.new.decorate
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,20 +36,20 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:id]).decorate
   end
 
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(params[:student])
+    @student = Student.new(params[:student]).decorate
 
     respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render json: @student, status: :created, location: @student }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -56,14 +58,14 @@ class StudentsController < ApplicationController
   # PUT /students/1
   # PUT /students/1.json
   def update
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:id]).decorate
 
     respond_to do |format|
       if @student.update_attributes(params[:student])
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -72,7 +74,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:id]).decorate
     @student.destroy
 
     respond_to do |format|
