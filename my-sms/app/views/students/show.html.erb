@@ -1,40 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Student -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <b>Title:</b>
-  <%= @student.title %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @student.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @student.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:middle_name) %>:</strong></dt>
+  <dd><%= @student.middle_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @student.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @student.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
+  <dd><%= @student.birth_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
+  <dd><%= @student.gender %></dd>
+</dl>
 
-<p>
-  <b>First name:</b>
-  <%= @student.first_name %>
-</p>
-
-<p>
-  <b>Middle name:</b>
-  <%= @student.middle_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @student.last_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @student.email %>
-</p>
-
-<p>
-  <b>Birth date:</b>
-  <%= @student.birth_date %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @student.gender %>
-</p>
-
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              students_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_student_path(@student), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              student_path(@student),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
