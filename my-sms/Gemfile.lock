@@ -47,6 +47,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commonjs (0.2.7)
     concurrent-ruby (1.1.8)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -76,6 +77,11 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     kwalify (0.7.2)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.6.0)
+      actionpack (>= 3.1)
+      less (~> 2.6.0)
     mail (2.5.5)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -179,6 +185,11 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (3.2.2)
+      actionpack (>= 3.1)
+      execjs (>= 2.2.2, >= 2.2)
+      less-rails (>= 2.5.0)
+      railties (>= 3.1)
     tzinfo (0.3.59)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -208,6 +219,7 @@ DEPENDENCIES
   shoulda-matchers
   spring-commands-rspec
   test-unit
+  twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   will_paginate (~> 3.1.0)
 
