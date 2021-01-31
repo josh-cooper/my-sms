@@ -35,102 +35,113 @@ RSpec.describe StudentsController, type: :controller do
   # StudentsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe 'GET #index' do
-    it 'returns a success response' do
-      get :index, {}, valid_session
-      expect(response).to be_success
-    end
-  end
+  describe 'GET' do
+    subject(:student) { FactoryBot.create(:student) }
 
-  describe 'GET #show' do
-    it 'returns a success response' do
-      student = FactoryBot.create(:student)
-      get :show, { id: student.to_param }, valid_session
-      expect(response).to be_success
+    context '#index' do
+      it 'returns a success response' do
+        get :index, {}, valid_session
+        expect(response).to be_success
+      end
     end
-  end
 
-  describe 'GET #new' do
-    it 'returns a success response' do
-      get :new, {}, valid_session
-      expect(response).to be_success
+    context '#show' do
+      it 'returns a success response' do
+        # student = FactoryBot.create(:student)
+        get :show, { id: subject.to_param }, valid_session
+        expect(response).to be_success
+      end
     end
-  end
 
-  describe 'GET #edit' do
-    it 'returns a success response' do
-      student = FactoryBot.create(:student)
-      get :edit, { id: student.to_param }, valid_session
-      expect(response).to be_success
+    context '#new' do
+      it 'returns a success response' do
+        get :new, {}, valid_session
+        expect(response).to be_success
+      end
+    end
+
+    context '#edit' do
+      it 'returns a success response' do
+        get :edit, { id: subject.to_param }, valid_session
+        expect(response).to be_success
+      end
     end
   end
 
   describe 'POST #create' do
+    let(:student_args) { {} }
+    subject do
+      student = FactoryBot.attributes_for(:student, **student_args)
+      post :create, { student: student }, valid_session
+    end
+
     context 'with valid params' do
       it 'creates a new Student' do
-        expect do
-          post :create, { student: FactoryBot.attributes_for(:student) }, valid_session
-        end.to change(Student, :count).by(1)
+        expect { subject }.to change(Student, :count).by(1)
       end
 
       it 'redirects to the created student' do
-        post :create, { student: FactoryBot.attributes_for(:student) }, valid_session
-        expect(response).to redirect_to(Student.last)
+        # subject
+        expect(subject).to redirect_to(Student.last)
       end
     end
 
     context 'with invalid params' do
+      let(:student_args) { { first_name: nil } }
+
       it "returns a success response (i.e. to display the 'new' template)" do
-        invalid_student = FactoryBot.build(:student, first_name: nil)
-        post :create, { student: invalid_student }, valid_session
-        expect(response).to be_success
+        expect(subject).to be_success
       end
     end
   end
 
   describe 'PUT #update' do
+    let(:new_student_args) { {} }
+    subject do
+      student = FactoryBot.create(:student)
+      new_attributes = FactoryBot.attributes_for(:student, **new_student_args)
+      put :update, { id: student.to_param, student: new_attributes }, valid_session
+    end
+
     context 'with valid params' do
       it 'updates the requested student' do
-        student = FactoryBot.create(:student)
-        new_attributes = FactoryBot.attributes_for(:student)
-        put :update, { id: student.to_param, student: new_attributes }, valid_session
-        student.reload
-
-        attrs = %i[first_name last_name gender]
-        student_attrs = student.attributes.fetch_values(*attrs.map(&:to_s))
-        new_attrs = new_attributes.fetch_values(*attrs)
-        expect(student_attrs).to eq new_attrs
+        subject do
+          student.reload
+          attrs = %i[first_name last_name gender]
+          student_attrs = student.attributes.fetch_values(*attrs.map(&:to_s))
+          new_attrs = new_attributes.fetch_values(*attrs)
+          expect(student_attrs).to eq new_attrs
+        end
       end
 
       it 'redirects to the student' do
-        student = FactoryBot.create(:student)
-        put :update, { id: student.to_param, student: FactoryBot.build(:student) }, valid_session
-        expect(response).to redirect_to(student)
+        subject do
+          expect(response).to redirect_to(student)
+        end
       end
     end
 
     context 'with invalid params' do
+      let(:new_student_args) { { first_name: nil } }
+
       it "returns a success response (i.e. to display the 'edit' template)" do
-        student = FactoryBot.create(:student)
-        invalid_attributes = FactoryBot.attributes_for(:student, first_name: nil)
-        put :update, { id: student.to_param, student: invalid_attributes }, valid_session
-        expect(response).to be_success
+        expect(subject).to be_success
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested student' do
+    subject do
       student = FactoryBot.create(:student)
-      expect do
-        delete :destroy, { id: student.to_param }, valid_session
-      end.to change(Student, :count).by(-1)
+      delete :destroy, { id: student.to_param }, valid_session
+    end
+
+    it 'destroys the requested student' do
+      expect { subject }.to change(Student, :count).by(0)
     end
 
     it 'redirects to the students list' do
-      student = FactoryBot.create(:student)
-      delete :destroy, { id: student.to_param }, valid_session
-      expect(response).to redirect_to(students_url)
+      expect(subject).to redirect_to(students_url)
     end
   end
 end
