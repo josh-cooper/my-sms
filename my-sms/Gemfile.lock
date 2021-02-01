@@ -188,6 +188,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    will_paginate (3.1.8)
 
 PLATFORMS
   ruby
@@ -208,6 +209,7 @@ DEPENDENCIES
   spring-commands-rspec
   test-unit
   uglifier (>= 1.0.3)
+  will_paginate (~> 3.1.0)
 
 BUNDLED WITH
    1.17.3
