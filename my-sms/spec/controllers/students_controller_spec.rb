@@ -57,25 +57,22 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:student_args) { {} }
-    subject do
-      student = FactoryBot.attributes_for(:student, **student_args)
-      post :create, { student: student }
-    end
+    subject { post :create, { student: student } }
 
     context 'with valid params' do
+      let(:student) { FactoryBot.attributes_for(:student) }
+
       it 'creates a new Student' do
         expect { subject }.to change(Student, :count).by(1)
       end
 
       it 'redirects to the created student' do
-        # subject
         expect(subject).to redirect_to(Student.last)
       end
     end
 
     context 'with invalid params' do
-      let(:student_args) { { first_name: nil } }
+      let(:student) { FactoryBot.attributes_for(:student, first_name: nil) }
 
       it "returns a success response (i.e. to display the 'new' template)" do
         expect(subject).to be_success
