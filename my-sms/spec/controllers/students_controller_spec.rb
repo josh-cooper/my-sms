@@ -90,13 +90,13 @@ RSpec.describe StudentsController, type: :controller do
 
     context 'with valid params' do
       it 'updates the requested student' do
-        subject do
-          student.reload
-          attrs = %i[first_name last_name gender]
-          student_attrs = student.attributes.fetch_values(*attrs.map(&:to_s))
-          new_attrs = new_attributes.fetch_values(*attrs)
-          expect(student_attrs).to eq new_attrs
-        end
+        subject
+        student.reload
+        attrs = %i[first_name last_name gender]
+        student_attrs = student.attributes.fetch_values(*attrs.map(&:to_s))
+        new_attrs = new_attributes.fetch_values(*attrs)
+        expect(student_attrs).to eq new_attrs
+
       end
 
       it 'redirects to the student' do
