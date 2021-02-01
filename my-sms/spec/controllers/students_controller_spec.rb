@@ -81,14 +81,12 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:new_student_args) { {} }
-    subject do
-      student = FactoryBot.create(:student)
-      new_attributes = FactoryBot.attributes_for(:student, **new_student_args)
-      put :update, { id: student.to_param, student: new_attributes }
-    end
+    let(:student) { FactoryBot.create(:student) }
+    subject { put :update, { id: student.to_param, student: new_attributes } }
 
     context 'with valid params' do
+      let(:new_attributes) { FactoryBot.attributes_for(:student) }
+
       it 'updates the requested student' do
         subject
         student.reload
@@ -96,18 +94,18 @@ RSpec.describe StudentsController, type: :controller do
         student_attrs = student.attributes.fetch_values(*attrs.map(&:to_s))
         new_attrs = new_attributes.fetch_values(*attrs)
         expect(student_attrs).to eq new_attrs
-
       end
 
       it 'redirects to the student' do
-        subject do
-          expect(response).to redirect_to(student)
-        end
+        expect(subject).to redirect_to(student)
       end
     end
 
     context 'with invalid params' do
       let(:new_student_args) { { first_name: nil } }
+      let(:new_attributes) do
+        FactoryBot.attributes_for(:student, { first_name: nil })
+      end
 
       it "returns a success response (i.e. to display the 'edit' template)" do
         expect(subject).to be_success
