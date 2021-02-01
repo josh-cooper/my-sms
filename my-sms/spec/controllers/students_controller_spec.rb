@@ -26,36 +26,33 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe StudentsController, type: :controller do
-  describe 'GET' do
-    subject(:student) { FactoryBot.create(:student) }
+  let(:student) { FactoryBot.create(:student) }
 
-    context '#index' do
-      it 'returns a success response' do
-        get :index, {}
-        expect(response).to be_success
-      end
+  describe 'GET #index' do
+    subject { get :index }
+    it 'returns a success response' do
+      expect(subject).to be_success
     end
+  end
 
-    context '#show' do
-      it 'returns a success response' do
-        # student = FactoryBot.create(:student)
-        get :show, { id: subject.to_param }
-        expect(response).to be_success
-      end
+  describe 'GET #show' do
+    subject { get :show, { id: student.to_param } }
+    it 'returns a success response' do
+      expect(subject).to be_success
     end
+  end
 
-    context '#new' do
-      it 'returns a success response' do
-        get :new, {}
-        expect(response).to be_success
-      end
+  describe 'GET #new' do
+    subject { get :new }
+    it 'returns a success response' do
+      expect(subject).to be_success
     end
+  end
 
-    context '#edit' do
-      it 'returns a success response' do
-        get :edit, { id: subject.to_param }
-        expect(response).to be_success
-      end
+  describe 'GET #edit' do
+    subject { get :edit, { id: student.to_param } }
+    it 'returns a success response' do
+      expect(subject).to be_success
     end
   end
 
