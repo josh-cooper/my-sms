@@ -31,28 +31,32 @@ RSpec.describe StudentsController, type: :controller do
   describe 'GET #index' do
     subject { get :index }
     it 'returns a success response' do
-      expect(subject).to be_success
+      should be_success
+      should render_template('index')
     end
   end
 
   describe 'GET #show' do
     subject { get :show, { id: student.to_param } }
     it 'returns a success response' do
-      expect(subject).to be_success
+      should be_success
+      should render_template('show')
     end
   end
 
   describe 'GET #new' do
     subject { get :new }
     it 'returns a success response' do
-      expect(subject).to be_success
+      should be_success
+      should render_template('new')
     end
   end
 
   describe 'GET #edit' do
     subject { get :edit, { id: student.to_param } }
     it 'returns a success response' do
-      expect(subject).to be_success
+      should be_success
+      should render_template('edit')
     end
   end
 
@@ -67,7 +71,8 @@ RSpec.describe StudentsController, type: :controller do
       end
 
       it 'redirects to the created student' do
-        expect(subject).to redirect_to(Student.last)
+        should be_redirect
+        should redirect_to(Student.last)
       end
     end
 
@@ -75,7 +80,8 @@ RSpec.describe StudentsController, type: :controller do
       let(:student) { FactoryBot.attributes_for(:student, first_name: nil) }
 
       it "returns a success response (i.e. to display the 'new' template)" do
-        expect(subject).to be_success
+        should be_success
+        should render_template('new')
       end
     end
   end
@@ -97,7 +103,8 @@ RSpec.describe StudentsController, type: :controller do
       end
 
       it 'redirects to the student' do
-        expect(subject).to redirect_to(student)
+        should be_redirect
+        should redirect_to(student)
       end
     end
 
@@ -108,7 +115,8 @@ RSpec.describe StudentsController, type: :controller do
       end
 
       it "returns a success response (i.e. to display the 'edit' template)" do
-        expect(subject).to be_success
+        should be_success
+        should render_template('edit')
       end
     end
   end
@@ -124,7 +132,8 @@ RSpec.describe StudentsController, type: :controller do
     end
 
     it 'redirects to the students list' do
-      expect(subject).to redirect_to(students_url)
+      should be_redirect
+      should redirect_to(students_url)
     end
   end
 end
