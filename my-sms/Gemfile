@@ -7,11 +7,18 @@ gem 'rails', '~> 3.2.0'
 
 gem 'mysql2', '0.3.20'
 
-# tooling
-gem 'rubocop'
-gem 'reek'
-gem 'byebug'
-gem 'rspec'
+group :development do
+  gem 'rubocop'
+  gem 'spring-commands-rspec'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.6.0'
+  gem 'factory_bot_rails', '~> 4.10.0'
+  gem 'test-unit'
+  gem 'reek'
+  gem 'byebug'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
