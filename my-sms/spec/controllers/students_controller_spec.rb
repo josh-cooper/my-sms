@@ -119,8 +119,8 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:student) { FactoryBot.create(:student) }
     subject do
-      student = FactoryBot.create(:student)
       delete :destroy, { id: student.to_param }
     end
 
