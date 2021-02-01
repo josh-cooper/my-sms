@@ -26,21 +26,12 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe StudentsController, type: :controller do
-  # This should return the minimal set of attributes required to create a valid
-  # Student. As you add validations to Student, be sure to
-  # adjust the attributes here as well.
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # StudentsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe 'GET' do
     subject(:student) { FactoryBot.create(:student) }
 
     context '#index' do
       it 'returns a success response' do
-        get :index, {}, valid_session
+        get :index, {}
         expect(response).to be_success
       end
     end
@@ -48,21 +39,21 @@ RSpec.describe StudentsController, type: :controller do
     context '#show' do
       it 'returns a success response' do
         # student = FactoryBot.create(:student)
-        get :show, { id: subject.to_param }, valid_session
+        get :show, { id: subject.to_param }
         expect(response).to be_success
       end
     end
 
     context '#new' do
       it 'returns a success response' do
-        get :new, {}, valid_session
+        get :new, {}
         expect(response).to be_success
       end
     end
 
     context '#edit' do
       it 'returns a success response' do
-        get :edit, { id: subject.to_param }, valid_session
+        get :edit, { id: subject.to_param }
         expect(response).to be_success
       end
     end
@@ -72,7 +63,7 @@ RSpec.describe StudentsController, type: :controller do
     let(:student_args) { {} }
     subject do
       student = FactoryBot.attributes_for(:student, **student_args)
-      post :create, { student: student }, valid_session
+      post :create, { student: student }
     end
 
     context 'with valid params' do
@@ -100,7 +91,7 @@ RSpec.describe StudentsController, type: :controller do
     subject do
       student = FactoryBot.create(:student)
       new_attributes = FactoryBot.attributes_for(:student, **new_student_args)
-      put :update, { id: student.to_param, student: new_attributes }, valid_session
+      put :update, { id: student.to_param, student: new_attributes }
     end
 
     context 'with valid params' do
@@ -133,7 +124,7 @@ RSpec.describe StudentsController, type: :controller do
   describe 'DELETE #destroy' do
     subject do
       student = FactoryBot.create(:student)
-      delete :destroy, { id: student.to_param }, valid_session
+      delete :destroy, { id: student.to_param }
     end
 
     it 'destroys the requested student' do
