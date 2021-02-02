@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe StudentDecorator do
   it 'formats a full name with title, first name, middle name, last name' do
-    student = FactoryBot.build(
+    student = build(
       :student,
       title: 'Mr',
       first_name: 'John',
@@ -15,7 +15,7 @@ describe StudentDecorator do
   end
 
   it 'formats a full name when there is no title or middle name' do
-    student = FactoryBot.build(
+    student = build(
       :student,
       title: nil,
       first_name: 'John',

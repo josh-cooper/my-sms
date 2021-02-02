@@ -26,7 +26,7 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe StudentsController, type: :controller do
-  let(:student) { FactoryBot.create(:student) }
+  let(:student) { create(:student) }
 
   describe 'GET #index' do
     subject { get :index }
@@ -64,7 +64,7 @@ RSpec.describe StudentsController, type: :controller do
     subject { post :create, { student: student } }
 
     context 'with valid params' do
-      let(:student) { FactoryBot.attributes_for(:student) }
+      let(:student) { attributes_for(:student) }
 
       it 'creates a new Student' do
         expect { subject }.to change(Student, :count).by(1)
@@ -77,7 +77,7 @@ RSpec.describe StudentsController, type: :controller do
     end
 
     context 'with invalid params' do
-      let(:student) { FactoryBot.attributes_for(:student, first_name: nil) }
+      let(:student) { attributes_for(:student, first_name: nil) }
 
       it "returns a success response (i.e. to display the 'new' template)" do
         should be_success
@@ -87,11 +87,11 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:student) { FactoryBot.create(:student) }
+    let(:student) { create(:student) }
     subject { put :update, { id: student.to_param, student: new_attributes } }
 
     context 'with valid params' do
-      let(:new_attributes) { FactoryBot.attributes_for(:student) }
+      let(:new_attributes) { attributes_for(:student) }
 
       it 'updates the requested student' do
         subject
@@ -111,7 +111,7 @@ RSpec.describe StudentsController, type: :controller do
     context 'with invalid params' do
       let(:new_student_args) { { first_name: nil } }
       let(:new_attributes) do
-        FactoryBot.attributes_for(:student, { first_name: nil })
+        attributes_for(:student, { first_name: nil })
       end
 
       it "returns a success response (i.e. to display the 'edit' template)" do
@@ -122,7 +122,7 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:student) { FactoryBot.create(:student) }
+    let(:student) { create(:student) }
     subject do
       delete :destroy, { id: student.to_param }
     end
