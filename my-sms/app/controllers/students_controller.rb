@@ -1,10 +1,13 @@
 # frozen_string_literal: false
 
 class StudentsController < ApplicationController
+  decorates_assigned :students
+  decorates_assigned :student
+
   # GET /students
   # GET /students.json
   def index
-    @students = StudentDecorator.decorate_collection(Student.all)
+    @students = Student.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +18,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
-    @student = Student.find(params[:id]).decorate
+    @student = Student.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +29,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.json
   def new
-    @student = Student.new.decorate
+    @student = Student.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,13 +39,13 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-    @student = Student.find(params[:id]).decorate
+    @student = Student.find(params[:id])
   end
 
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(params[:student]).decorate
+    @student = Student.new(params[:student])
 
     respond_to do |format|
       if @student.save
@@ -58,7 +61,7 @@ class StudentsController < ApplicationController
   # PUT /students/1
   # PUT /students/1.json
   def update
-    @student = Student.find(params[:id]).decorate
+    @student = Student.find(params[:id])
 
     respond_to do |format|
       if @student.update_attributes(params[:student])
@@ -74,7 +77,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student = Student.find(params[:id]).decorate
+    @student = Student.find(params[:id])
     @student.destroy
 
     respond_to do |format|
