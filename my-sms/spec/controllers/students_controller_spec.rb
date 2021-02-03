@@ -90,7 +90,7 @@ RSpec.describe StudentsController, type: :controller do
     end
   end
 
-  describe 'PUT #update', :focus do
+  describe 'PUT #update' do
     let(:student) { create(:student) }
     subject { put :update, { id: student.to_param, student: new_attributes } }
 
