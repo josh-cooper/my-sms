@@ -83,6 +83,10 @@ RSpec.describe StudentsController, type: :controller do
         should be_success
         should render_template('new')
       end
+
+      it 'does not create a new record' do
+        expect { subject }.to_not change(Student, :count)
+      end
     end
   end
 
