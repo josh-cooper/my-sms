@@ -14,7 +14,8 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD: example
+          MYSQL_ROOT_PASSWORD: swordfish
+          MYSQL_DATABASE: mysms
 
     steps:
       - uses: actions/checkout@v2
