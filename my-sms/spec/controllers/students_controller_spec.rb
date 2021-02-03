@@ -86,20 +86,23 @@ RSpec.describe StudentsController, type: :controller do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PUT #update', :focus do
     let(:student) { create(:student) }
     subject { put :update, { id: student.to_param, student: new_attributes } }
 
     context 'with valid params' do
       let(:new_attributes) { attributes_for(:student) }
+      let!(:student) do
+        FactoryBot.create(:student, first_name: 'John', last_name: 'New_name', gender: 'f')
+      end
+      let(:new_attributes) { FactoryBot.attributes_for(:student).stringify_keys }
+      let(:attr_names) { %w[first_name last_name gender] }
+      let(:new_attr_values) { new_attributes.fetch_values(*attr_names) }
 
       it 'updates the requested student' do
-        subject
-        student.reload
-        attrs = %i[first_name last_name gender]
-        student_attrs = student.attributes.fetch_values(*attrs.map(&:to_s))
-        new_attrs = new_attributes.fetch_values(*attrs)
-        expect(student_attrs).to eq new_attrs
+        expect { subject }.to change {
+          student.attributes.fetch_values(*attr_names)
+        }.to(new_attr_values)
       end
 
       it 'redirects to the student' do
