@@ -21,6 +21,7 @@ group :development, :test do
   gem 'test-unit'
   gem 'reek'
   gem 'byebug'
+  gem 'shoulda-matchers'
 end
 
 # Gems used only for assets and not required

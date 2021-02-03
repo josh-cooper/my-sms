@@ -26,8 +26,9 @@ require 'rspec/rails'
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-# factory_bot config
+# rspec related configs
 require 'support/factory_bot'
+require 'shoulda/matchers'
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

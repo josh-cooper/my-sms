@@ -3,64 +3,51 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-  it 'has a valid factory' do
-    expect(build(:student)).to be_valid
+  subject { student }
+  let(:student) { build(:student, student_params) }
+  let(:other_student) { build(:student) }
+  let(:student_params) { {} }
+
+  context 'with valid params' do
+    it 'has a valid factory' do
+      should be_valid
+    end
+
+    it 'has a factory that generates unique emails' do
+      should_not eq other_student.email
+    end
   end
 
-  it 'has a factory that generates unique emails' do
-    student = build(:student)
-    other_student = build(:student)
-    expect(student.email).not_to eq other_student.email
+  context 'with invalid params' do
+    it { should validate_presence_of(:first_name) }
+
+    it { should validate_presence_of(:last_name) }
+
+    it { should validate_presence_of(:email) }
+
+    it { should validate_presence_of(:birth_date) }
+
+    it { should_not validate_presence_of(:title) }
+
+    it { should_not validate_presence_of(:gender) }
+
+    it { should_not validate_presence_of(:middle_name) }
+
+    it {
+      should_not allow_value('invalid').for(:email)
+      should_not allow_value('invalid.com').for(:email)
+      should_not allow_value('invalid@').for(:email)
+    }
   end
 
-  it 'is invalid with a duplicate email address' do
-    create(:student, email: 'user@example.com')
-    student = build(:student, email: 'user@example.com')
-    student.valid?
-    expect(student.errors[:email]).to include('has already been taken')
-  end
+  context 'a student with the same email exists' do
+    let(:student) { build(:student, email: 'user@example.com') }
+    let(:other_student) { create(:student, email: 'user@example.com') }
 
-  it 'is invalid without a first name' do
-    student = build(:student, first_name: nil)
-    student.valid?
-    expect(student.errors[:first_name]).to include('can\'t be blank')
-  end
+    before { other_student }
 
-  it 'is invalid without a last name' do
-    student = build(:student, last_name: nil)
-    student.valid?
-    expect(student.errors[:last_name]).to include('can\'t be blank')
-  end
-
-  it 'is invalid without an email' do
-    student = build(:student, email: nil)
-    student.valid?
-    expect(student.errors[:email]).to include('can\'t be blank')
-  end
-
-  it 'is invalid without a birth date' do
-    student = build(:student, birth_date: nil)
-    student.valid?
-    expect(student.errors[:birth_date]).to include('can\'t be blank')
-  end
-
-  it 'is valid without a title' do
-    expect(build(:student, title: nil)).to be_valid
-  end
-
-  it 'is valid without a gender' do
-    expect(build(:student, gender: nil)).to be_valid
-  end
-
-  it 'is valid without a middle name' do
-    expect(build(:student, middle_name: nil)).to be_valid
-  end
-
-  it 'is invalid with an incorrect format' do
-    aggregate_failures do
-      expect(build(:student, email: 'invalid')).to_not be_valid
-      expect(build(:student, email: 'invalid.com')).to_not be_valid
-      expect(build(:student, email: 'invalid@')).to_not be_valid
+    it 'is invalid with a duplicate email address' do
+      should be_invalid
     end
   end
 end
