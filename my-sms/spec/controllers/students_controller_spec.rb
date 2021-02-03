@@ -134,8 +134,10 @@ RSpec.describe StudentsController, type: :controller do
       delete :destroy, { id: student.to_param }
     end
 
+    before { student }
+
     it 'destroys the requested student' do
-      expect { subject }.to change(Student, :count).by(0)
+      expect { subject }.to change(Student, :count).by(-1)
     end
 
     it 'redirects to the students list' do
