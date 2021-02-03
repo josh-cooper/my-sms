@@ -16,7 +16,7 @@ common: &common
   pool: 5
   username: root
   password: swordfish
-  host: db
+  host: <%= ENV['MYSQL_DATABASE_HOST'] || 'db' %>
   port: 3306
 
 development:
