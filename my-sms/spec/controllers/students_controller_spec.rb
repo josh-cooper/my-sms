@@ -105,7 +105,7 @@ RSpec.describe StudentsController, type: :controller do
 
       it 'updates the requested student' do
         expect { subject }.to change {
-          student.attributes.fetch_values(*attr_names)
+          student.reload.attributes.fetch_values(*attr_names)
         }.to(new_attr_values)
       end
 
