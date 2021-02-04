@@ -1,0 +1,42 @@
+name: develop
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  MYSQL_DATABASE_HOST: 127.0.0.1
+
+jobs:
+  test:
+    runs-on: ubuntu-16.04
+
+    services:
+      mysql:
+        image: mysql:5.6
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: swordfish
+          MYSQL_DATABASE: mysms
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.3.8
+      - name: Install MySQL lib & client
+        run: |
+          sudo apt-get install libmysqlclient-dev mysql-client
+      - name: Install dependencies
+        run: |
+          gem install bundler -v 1.17
+          cd my-sms/
+          bundle install
+      - name: Create & Migrate DB
+        run: |
+          cd my-sms/
+          bundle exec rake db:create RAILS_ENV=test
+          bundle exec rake db:migrate RAILS_ENV=test
+      - name: Run RSpec
+        run: |
+          cd my-sms/
+          bundler exec rspec
