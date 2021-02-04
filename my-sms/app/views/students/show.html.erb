@@ -15,7 +15,7 @@
   <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:email) %>:</span></dt>
   <dd class="model-list-value"><%= @student.email %></dd>
   <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:birth_date) %>:</span></dt>
-  <dd class="model-list-value"><%= @student.birth_date %></dd>
+  <dd class="model-list-value"><%= l @student.birth_date, format: :long %></dd>
   <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:gender) %>:</span></dt>
   <dd class="model-list-value"><%= @student.gender %></dd>
 </dl>
