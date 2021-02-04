@@ -7,6 +7,9 @@ gem 'rails', '~> 3.2.0'
 
 gem 'mysql2', '0.3.20'
 
+# rails gems
+gem 'draper'
+
 group :development do
   gem 'rubocop'
   gem 'spring-commands-rspec'
@@ -18,6 +21,7 @@ group :development, :test do
   gem 'test-unit'
   gem 'reek'
   gem 'byebug'
+  gem 'shoulda-matchers'
 end
 
 # Gems used only for assets and not required

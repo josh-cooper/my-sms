@@ -1,4 +1,11 @@
+# frozen_string_literal: false
+
 class StudentsController < ApplicationController
+  decorates_assigned :students
+  decorates_assigned :student
+
+  before_filter :find_student, only: %i[show edit update destroy]
+
   # GET /students
   # GET /students.json
   def index
@@ -13,8 +20,6 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
-    @student = Student.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @student }
@@ -33,9 +38,7 @@ class StudentsController < ApplicationController
   end
 
   # GET /students/1/edit
-  def edit
-    @student = Student.find(params[:id])
-  end
+  def edit; end
 
   # POST /students
   # POST /students.json
@@ -47,7 +50,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render json: @student, status: :created, location: @student }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -56,14 +59,12 @@ class StudentsController < ApplicationController
   # PUT /students/1
   # PUT /students/1.json
   def update
-    @student = Student.find(params[:id])
-
     respond_to do |format|
       if @student.update_attributes(params[:student])
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -72,12 +73,15 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student = Student.find(params[:id])
     @student.destroy
 
     respond_to do |format|
       format.html { redirect_to students_url }
       format.json { head :no_content }
     end
+  end
+
+  def find_student
+    @student = Student.find(params[:id])
   end
 end
