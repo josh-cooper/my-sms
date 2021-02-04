@@ -1,0 +1,15 @@
+/*
+* default styles for model show routes (i.e. lists of attributes)
+*/
+
+.model-list-heading {
+  text-align: end;
+}
+
+.model-list-heading-text {
+  font-weight: 700;
+}
+
+.model-list-text {
+  text-align: start;
+}

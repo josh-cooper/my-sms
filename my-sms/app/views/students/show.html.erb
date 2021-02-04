@@ -4,20 +4,20 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @student.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
-  <dd><%= @student.first_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:middle_name) %>:</strong></dt>
-  <dd><%= @student.middle_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
-  <dd><%= @student.last_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @student.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
-  <dd><%= @student.birth_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
-  <dd><%= @student.gender %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:title) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.title %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:first_name) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.first_name %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:middle_name) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.middle_name %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:last_name) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.last_name %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:email) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.email %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:birth_date) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.birth_date %></dd>
+  <dt class="model-list-heading"><span class="model-list-heading-text"><%= model_class.human_attribute_name(:gender) %>:</span></dt>
+  <dd class="model-list-value"><%= @student.gender %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
