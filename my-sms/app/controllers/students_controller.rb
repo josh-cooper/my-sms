@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = StudentDecorator.decorate_collection(
-      Student.paginate(page: params[:page], per_page: 10)
+      Student.paginate(page: params[:page], per_page: Student::DEFAULT_PER_PAGE)
     )
 
     respond_to do |format|
