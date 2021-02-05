@@ -13,6 +13,19 @@ module ApplicationHelper
     super *[collection_or_options, options].compact
   end
 
+  ALERT_CLASS = {
+    error: 'alert-danger',
+    success: 'alert-success',
+    alert: 'alert-warning',
+    notice: 'alert-info'
+  }.freeze
+  ALERT_CLASS_DEFAULT = 'alert-primary'
+
+  # auto assign bootstrap class depending on flash type
+  def get_alert_class(flash_type)
+    ALERT_CLASS.fetch(flash_type, ALERT_CLASS_DEFAULT)
+  end
+
   # custom link renderer to add bootstrap styling to pagination links
   class BootstrapLinkRenderer < WillPaginate::ActionView::LinkRenderer
     protected

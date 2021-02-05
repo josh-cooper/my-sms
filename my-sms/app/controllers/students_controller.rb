@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
   decorates_assigned :student
 
   before_filter :find_student, only: %i[show edit update destroy]
+  before_render :flash_errors, only: %i[edit create update]
 
   # GET /students
   # GET /students.json
@@ -85,5 +86,11 @@ class StudentsController < ApplicationController
 
   def find_student
     @student = Student.find(params[:id])
+  end
+
+  def flash_errors
+    student.errors.full_messages.each do |error|
+      (flash[:error] ||= []) << error
+    end if student&.errors
   end
 end
