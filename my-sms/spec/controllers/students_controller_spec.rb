@@ -87,11 +87,15 @@ RSpec.describe StudentsController, type: :controller do
       it 'does not create a new record' do
         expect { subject }.to_not change(Student, :count)
       end
+
+      it "should propagate model errors to an error flash" do
+        expect { subject }.to change{ flash[:error] }.from(nil).to(["First name can't be blank"])
+      end
     end
   end
 
   describe 'PUT #update' do
-    let(:student) { create(:student) }
+    let!(:student) { create(:student) }
     subject { put :update, { id: student.to_param, student: new_attributes } }
 
     context 'with valid params' do
@@ -124,6 +128,10 @@ RSpec.describe StudentsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         should be_success
         should render_template('edit')
+      end
+
+      it "should propagate model errors to an error flash" do
+        expect { subject }.to change{ flash[:error] }.from(nil).to(["First name can't be blank"])
       end
     end
   end
