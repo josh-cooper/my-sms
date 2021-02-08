@@ -1,0 +1,11 @@
+/*
+* default styles for flashes (bootstrap alerts)
+*/
+
+.alert-list {
+  display: inline-block;
+}
+
+.alert-item {
+  font-weight: 700;
+}

@@ -5,11 +5,14 @@ class StudentsController < ApplicationController
   decorates_assigned :student
 
   before_filter :find_student, only: %i[show edit update destroy]
+  before_render :flash_errors, only: %i[edit create update]
 
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @students = StudentDecorator.decorate_collection(
+      Student.paginate(page: params[:page], per_page: Student::DEFAULT_PER_PAGE)
+    )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,5 +86,12 @@ class StudentsController < ApplicationController
 
   def find_student
     @student = Student.find(params[:id])
+  end
+
+  def flash_errors
+    return unless @student&.errors&.full_messages
+    @student.errors.full_messages.each do |error|
+      (flash[:error] ||= []) << error
+    end
   end
 end

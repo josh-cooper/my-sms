@@ -11,4 +11,6 @@ class Student < ActiveRecord::Base
                     format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: 'Must be a valid email' }
   validates :birth_date, presence: true
+
+  DEFAULT_PER_PAGE = 10
 end
