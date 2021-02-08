@@ -89,8 +89,8 @@ class StudentsController < ApplicationController
   end
 
   def flash_errors
-    return unless student&.errors&.full_messages
-    student.errors.full_messages.each do |error|
+    return unless @student&.errors&.full_messages
+    @student.errors.full_messages.each do |error|
       (flash[:error] ||= []) << error
     end
   end
