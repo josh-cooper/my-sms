@@ -1,51 +1,51 @@
-<%= form_for @student, :html => { :class => "form-horizontal student" } do |f| %>
+<%= form_for @student, html: { class: "form-horizontal student" } do |f| %>
   <div class="form-group">
-    <%= f.label :title, :class => 'control-label col-lg-2' %>
+    <%= f.label :title, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :title, :class => 'form-control' %>
+      <%= f.text_field :title, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :first_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :first_name, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :first_name, :class => 'form-control' %>
+      <%= f.text_field :first_name, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :middle_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :middle_name, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :middle_name, :class => 'form-control' %>
+      <%= f.text_field :middle_name, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :last_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :last_name, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :last_name, :class => 'form-control' %>
+      <%= f.text_field :last_name, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :email, :class => 'control-label col-lg-2' %>
+    <%= f.label :email, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :email, :class => 'form-control' %>
+      <%= f.text_field :email, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :birth_date, :class => 'control-label col-lg-2' %>
+    <%= f.label :birth_date, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.date_select :birth_date, :class => 'form-control' %>
+      <%= f.date_select :birth_date, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :gender, :class => 'control-label col-lg-2' %>
+    <%= f.label :gender, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :gender, :class => 'form-control' %>
+      <%= f.text_field :gender, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                students_path, :class => 'btn btn-default' %>
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                students_path, class: 'btn btn-default' %>
     </div>
   </div>
 <% end %>
