@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Student < ActiveRecord::Base
-  attr_accessible :title, :first_name, :middle_name, :last_name, :email,
+  attr_accessible :first_name, :middle_name, :last_name, :email,
                   :birth_date, :gender
+  
+  has_one :title
 
   validates :first_name, presence: true
   validates :last_name, presence: true
