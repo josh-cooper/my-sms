@@ -16,7 +16,7 @@ class CreateTitles < ActiveRecord::Migration
 
     # create titles table
     create_table :titles do |t|
-      t.string :name
+      t.string :name, null: false
 
       t.timestamps
     end
