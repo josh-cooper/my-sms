@@ -3,8 +3,7 @@
 class Student < ActiveRecord::Base
   attr_accessible :first_name, :middle_name, :last_name, :email,
                   :birth_date, :gender
-  
-  has_one :title
+  belongs_to :title
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -15,4 +14,9 @@ class Student < ActiveRecord::Base
   validates :birth_date, presence: true
 
   DEFAULT_PER_PAGE = 10
+
+  # defer to title name by default
+  def title(model = false)
+    model ? super : super&.name
+  end
 end
