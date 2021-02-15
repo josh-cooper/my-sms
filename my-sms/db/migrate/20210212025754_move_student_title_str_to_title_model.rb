@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoveStudentTitleStrToTitleModel < ActiveRecord::Migration
   def up
     # update students table
@@ -6,18 +8,7 @@ class MoveStudentTitleStrToTitleModel < ActiveRecord::Migration
       t.references :title
     end
 
-    # add title model association
-    # without making assumptions about model
-    # add any titles not already in the db
-    Student.reset_column_information
-    Student.find_each do |student|
-      title = Title.where(name: student[:title_old]).first_or_create
-      student.update_attribute(:title_id, title.id)
-      student.save
-    end
-
-    # remove old title (string) column
-    remove_column :students, :title_old
+    logger.warn 'Run rake db:migrate:migrate_students to convert existing title Strings in title_old column.'
   end
 
   def down
