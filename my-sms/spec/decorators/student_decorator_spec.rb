@@ -6,7 +6,7 @@ describe StudentDecorator do
   it 'formats a full name with title, first name, middle name, last name' do
     student = build(
       :student,
-      title: 'Mr',
+      title: FactoryBot.build(:title, name: 'Mr'),
       first_name: 'John',
       middle_name: 'Adam',
       last_name: 'Smith'
