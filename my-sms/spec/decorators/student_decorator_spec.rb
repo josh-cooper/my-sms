@@ -3,10 +3,12 @@
 require 'rails_helper'
 
 describe StudentDecorator do
+  let(:title) { build(:title, name: 'Mr') }
+
   it 'formats a full name with title, first name, middle name, last name' do
     student = build(
       :student,
-      title: FactoryBot.build(:title, name: 'Mr'),
+      title: title,
       first_name: 'John',
       middle_name: 'Adam',
       last_name: 'Smith'
