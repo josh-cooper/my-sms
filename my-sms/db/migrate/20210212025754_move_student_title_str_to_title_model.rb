@@ -1,11 +1,5 @@
 class MoveStudentTitleStrToTitleModel < ActiveRecord::Migration
   def up
-    # cache titles from db to avoid multiple queries
-    title_name_to_id = {}
-    Title.all.each do |title|
-      title_name_to_id[title.name] = title.id
-    end
-
     # update students table
     change_table :students do |t|
       t.rename(:title, :title_old)
