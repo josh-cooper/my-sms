@@ -1,0 +1,32 @@
+- model_class = Student
+.page-header
+  %h1=t '.title', default: model_class.model_name.human.titleize
+%dl.dl-horizontal
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:title)} :
+  %dd.model-list-value= @student.title
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:first_name)} :
+  %dd.model-list-value= @student.first_name
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:middle_name)} :
+  %dd.model-list-value= @student.middle_name
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:last_name)} :
+  %dd.model-list-value= @student.last_name
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:email)} :
+  %dd.model-list-value= @student.email
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:birth_date)} :
+  %dd.model-list-value= l @student.birth_date, format: :long
+  %dt.model-list-heading
+    %span.model-list-heading-text #{model_class.human_attribute_name(:gender)} :
+  %dd.model-list-value= @student.gender
+= link_to t('.back', default: t("helpers.links.back")), students_path, class: 'btn btn-default'
+= link_to t('.edit', default: t("helpers.links.edit")), edit_student_path(@student), class: 'btn btn-default'
+= link_to t('.destroy', default: t("helpers.links.destroy")),
+  student_path(@student),
+  method: 'delete',
+  data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
+  class: 'btn btn-danger'
