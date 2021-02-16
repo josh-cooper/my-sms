@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :db do
+namespace :data do
   namespace :migrate do
     # add title model association
     # without making assumptions about model
