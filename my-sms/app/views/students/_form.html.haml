@@ -1,0 +1,34 @@
+= form_for @student, html: { class: "form-horizontal student" } do |f|
+  %div.form-group
+    = f.label :title, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.collection_select(:title_id, Title.all, :id, :name, prompt: true, class: 'form-control')
+  %div.form-group
+    = f.label :first_name, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :first_name, class: 'form-control'
+  %div.form-group
+    = f.label :middle_name, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :middle_name, class: 'form-control'
+  %div.form-group
+    = f.label :last_name, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :last_name, class: 'form-control'
+  %div.form-group
+    = f.label :email, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :email, class: 'form-control'
+  %div.form-group
+    = f.label :birth_date, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.date_select :birth_date, class: 'form-control'
+  %div.form-group
+    = f.label :gender, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :gender, class: 'form-control'
+  %div.form-group
+    %div.col-lg-offset-2.col-lg-10
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to t('.cancel', default: t("helpers.links.cancel")),
+        students_path, class: 'btn btn-default'
