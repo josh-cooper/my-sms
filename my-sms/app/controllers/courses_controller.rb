@@ -1,6 +1,11 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 class CoursesController < ApplicationController
+  decorates_assigned :courses
+  decorates_assigned :course
+
+  before_filter :find_course, only: %i[show edit update destroy]
+
   # GET /courses
   # GET /courses.json
   def index
@@ -76,5 +81,9 @@ class CoursesController < ApplicationController
       format.html { redirect_to courses_url }
       format.json { head :no_content }
     end
+  end
+
+  def find_course
+    @course = Course.find(params[:id])
   end
 end
