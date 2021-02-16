@@ -15,7 +15,6 @@ gem 'twitter-bootstrap-rails'
 group :development do
   gem 'rubocop'
   gem 'spring-commands-rspec'
-  gem 'faker'
 end
 
 group :development, :test do
@@ -25,6 +24,7 @@ group :development, :test do
   gem 'reek'
   gem 'byebug'
   gem 'shoulda-matchers'
+  gem 'faker'
 end
 
 # Gems used only for assets and not required
