@@ -2,7 +2,7 @@
   <div class="form-group">
     <%= f.label :title, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.collection_select(:title_id, Title.all, :id, :name, prompt: true, class: 'form-control') %>
     </div>
   </div>
   <div class="form-group">
