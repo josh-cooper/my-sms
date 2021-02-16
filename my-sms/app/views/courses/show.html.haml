@@ -1,2 +1,10 @@
-%h1 Courses#show
-%p Find me in app/views/courses/show.html.haml
+:ruby
+  display_attrs = %i[id name description number_of_semesters allocation start_date end_date]
+  display_ovrd = {
+    number_of_semesters: { heading: Course.human_attribute_name('Semesters') },
+    start_date: { value: l(@course.start_date, format: :long) },
+    end_date: { value: l(@course.end_date, format: :long) }
+  }
+
+= render partial: 'shared/model_attr_list',
+  locals: {model_instance: @course, display_attrs: display_attrs, display_ovrd: display_ovrd}
