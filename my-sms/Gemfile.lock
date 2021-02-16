@@ -70,6 +70,11 @@ GEM
     ffi (1.14.2)
     haml (4.0.7)
       tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -194,7 +199,7 @@ GEM
       execjs (>= 2.2.2, >= 2.2)
       less-rails (>= 2.5.0)
       railties (>= 3.1)
-    tzinfo (0.3.59)
+    tzinfo (0.3.60)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
@@ -214,7 +219,7 @@ DEPENDENCIES
   draper
   factory_bot_rails (~> 4.10.0)
   faker
-  haml (~> 4.0)
+  haml-rails (~> 0.4.0)
   jquery-rails
   mysql2 (= 0.3.20)
   rails (~> 3.2.0)
