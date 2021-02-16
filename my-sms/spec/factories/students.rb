@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :student do
-    title { %w[Mr Mrs Miss Ms].sample }
+    association :title, strategy: :build
     first_name 'John'
     middle_name 'Alan'
     last_name 'Smith'

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Student < ActiveRecord::Base
-  attr_accessible :title, :first_name, :middle_name, :last_name, :email,
+  attr_accessible :title_id, :first_name, :middle_name, :last_name, :email,
                   :birth_date, :gender
+  belongs_to :title
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -13,4 +14,9 @@ class Student < ActiveRecord::Base
   validates :birth_date, presence: true
 
   DEFAULT_PER_PAGE = 10
+
+  # defer to title name by default
+  def title(model = false)
+    model ? super : super&.name
+  end
 end
