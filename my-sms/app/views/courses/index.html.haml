@@ -1,0 +1,3 @@
+- display_attrs = %i[id name number_of_semesters allocation start_date end_date]
+= render partial: 'shared/crud_models',
+  locals: {model_class: Course, model_collection: @courses, display_attrs: display_attrs}
