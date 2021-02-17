@@ -1,2 +1,5 @@
-%h1 Courses#edit
-%p Find me in app/views/courses/edit.html.haml
+- model_class = Course
+%div.page-header
+  %h1=t '.title', default: [:'helpers.titles.edit', 'Edit %{model}'], model: model_class.model_name.human.titleize
+
+= render partial: 'form'
