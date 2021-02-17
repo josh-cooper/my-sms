@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
   decorates_assigned :course
 
   before_filter :load_course, except: %i[index]
+  before_render :flash_errors, only: %i[edit create update]
 
   # GET /courses
   # GET /courses.json
@@ -88,5 +89,9 @@ class CoursesController < ApplicationController
               else
                 Course.new(params[:course])
     end
+  end
+
+  def flash_errors
+    super(@course)
   end
 end
