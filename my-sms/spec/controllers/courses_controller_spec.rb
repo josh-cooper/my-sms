@@ -122,4 +122,20 @@ RSpec.describe CoursesController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:course) { create(:course) }
+    subject { delete :destroy, { id: course.to_param } }
+
+    # before { course }
+
+    it 'destroys the requested course' do
+      expect { subject }.to change(Course, :count).by(-1)
+    end
+
+    it 'redirects to the courses list' do
+      should be_redirect
+      should redirect_to(courses_url)
+    end
+  end
 end
