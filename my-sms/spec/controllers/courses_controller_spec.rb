@@ -116,6 +116,10 @@ RSpec.describe CoursesController, type: :controller do
         is_expected.to be_success
         is_expected.to render_template('edit')
       end
+
+      it 'should propagate model errors to an error flash' do
+        expect { subject }.to change { flash[:error] }.from(nil).to(['End date must be after start date'])
+      end
     end
   end
 end
