@@ -1,7 +1,6 @@
 # frozen_string_literal: false
 
 class StudentsController < ApplicationController
-  decorates_assigned :students
   decorates_assigned :student
 
   before_filter :find_student, only: %i[show edit update destroy]
@@ -90,6 +89,7 @@ class StudentsController < ApplicationController
 
   def flash_errors
     return unless @student&.errors&.full_messages
+
     @student.errors.full_messages.each do |error|
       (flash[:error] ||= []) << error
     end

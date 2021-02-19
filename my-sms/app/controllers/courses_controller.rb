@@ -1,7 +1,6 @@
 # frozen_string_literal: false
 
 class CoursesController < ApplicationController
-  decorates_assigned :courses
   decorates_assigned :course
 
   before_filter :find_course, only: %i[show edit update destroy]
