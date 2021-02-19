@@ -3,7 +3,7 @@
 class CoursesController < ApplicationController
   decorates_assigned :course
 
-  before_filter :find_course, only: %i[show edit update destroy]
+  before_filter :load_course, except: %i[index]
 
   # GET /courses
   # GET /courses.json
@@ -82,7 +82,11 @@ class CoursesController < ApplicationController
     end
   end
 
-  def find_course
-    @course = Course.find(params[:id])
+  def load_course
+    @course = if params[:id]
+                Course.find(params[:id])
+              else
+                Course.new(params[:course])
+    end
   end
 end
