@@ -8,8 +8,8 @@ FactoryBot.define do
     description 'This is a course description.'
     allocation { rand(1..50) }
     number_of_semesters { rand(1..3) }
-    start_date 3.years.ago
-    end_date 2.years.ago
+    start_date 3.years.ago.to_date
+    end_date 2.years.ago.to_date
   end
   factory :course_demo, class: :course do
     name { Faker::Educator.course_name }

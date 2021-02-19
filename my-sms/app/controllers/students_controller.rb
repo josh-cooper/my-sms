@@ -1,10 +1,9 @@
 # frozen_string_literal: false
 
 class StudentsController < ApplicationController
-  decorates_assigned :students
   decorates_assigned :student
 
-  before_filter :find_student, only: %i[show edit update destroy]
+  before_filter :load_student, except: %i[index]
   before_render :flash_errors, only: %i[edit create update]
 
   # GET /students
@@ -84,12 +83,17 @@ class StudentsController < ApplicationController
     end
   end
 
-  def find_student
-    @student = Student.find(params[:id])
+  def load_student
+    @student = if params[:id]
+                 Student.find(params[:id])
+               else
+                 Student.new(params[:student])
+    end
   end
 
   def flash_errors
     return unless @student&.errors&.full_messages
+
     @student.errors.full_messages.each do |error|
       (flash[:error] ||= []) << error
     end

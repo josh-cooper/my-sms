@@ -8,7 +8,7 @@ RSpec.describe Title, type: :model do
   let(:title_params) { {} }
 
   context 'with valid params' do
-    it { should validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:name) }
   end
 
   context 'a title with the same name exists' do
