@@ -31,32 +31,32 @@ RSpec.describe StudentsController, type: :controller do
   describe 'GET #index' do
     subject { get :index }
     it 'returns a success response' do
-      should be_success
-      should render_template('index')
+      is_expected.to be_success
+      is_expected.to render_template('index')
     end
   end
 
   describe 'GET #show' do
     subject { get :show, { id: student.to_param } }
     it 'returns a success response' do
-      should be_success
-      should render_template('show')
+      is_expected.to be_success
+      is_expected.to render_template('show')
     end
   end
 
   describe 'GET #new' do
     subject { get :new }
     it 'returns a success response' do
-      should be_success
-      should render_template('new')
+      is_expected.to be_success
+      is_expected.to render_template('new')
     end
   end
 
   describe 'GET #edit' do
     subject { get :edit, { id: student.to_param } }
     it 'returns a success response' do
-      should be_success
-      should render_template('edit')
+      is_expected.to be_success
+      is_expected.to render_template('edit')
     end
   end
 
@@ -71,8 +71,8 @@ RSpec.describe StudentsController, type: :controller do
       end
 
       it 'redirects to the created student' do
-        should be_redirect
-        should redirect_to(Student.last)
+        is_expected.to be_redirect
+        is_expected.to redirect_to(Student.last)
       end
     end
 
@@ -80,16 +80,16 @@ RSpec.describe StudentsController, type: :controller do
       let(:student) { attributes_for(:student, first_name: nil) }
 
       it "returns a success response (i.e. to display the 'new' template)" do
-        should be_success
-        should render_template('new')
+        is_expected.to be_success
+        is_expected.to render_template('new')
       end
 
       it 'does not create a new record' do
         expect { subject }.to_not change(Student, :count)
       end
 
-      it "should propagate model errors to an error flash" do
-        expect { subject }.to change{ flash[:error] }.from(nil).to(["First name can't be blank"])
+      it 'is_expected.to propagate model errors to an error flash' do
+        expect { subject }.to change { flash[:error] }.from(nil).to(["First name can't be blank"])
       end
     end
   end
@@ -114,8 +114,8 @@ RSpec.describe StudentsController, type: :controller do
       end
 
       it 'redirects to the student' do
-        should be_redirect
-        should redirect_to(student)
+        is_expected.to be_redirect
+        is_expected.to redirect_to(student)
       end
     end
 
@@ -126,12 +126,12 @@ RSpec.describe StudentsController, type: :controller do
       end
 
       it "returns a success response (i.e. to display the 'edit' template)" do
-        should be_success
-        should render_template('edit')
+        is_expected.to be_success
+        is_expected.to render_template('edit')
       end
 
-      it "should propagate model errors to an error flash" do
-        expect { subject }.to change{ flash[:error] }.from(nil).to(["First name can't be blank"])
+      it 'is_expected.to propagate model errors to an error flash' do
+        expect { subject }.to change { flash[:error] }.from(nil).to(["First name can't be blank"])
       end
     end
   end
@@ -149,8 +149,8 @@ RSpec.describe StudentsController, type: :controller do
     end
 
     it 'redirects to the students list' do
-      should be_redirect
-      should redirect_to(students_url)
+      is_expected.to be_redirect
+      is_expected.to redirect_to(students_url)
     end
   end
 end
