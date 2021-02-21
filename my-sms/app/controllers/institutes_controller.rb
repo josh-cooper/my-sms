@@ -21,23 +21,11 @@ class InstitutesController < ApplicationController
 
   # GET /institutes/1
   # GET /institutes/1.json
-  def show
-    respond_to do |format|
-      format.html # show.html.haml
-      format.json { render json: @institute }
-    end
-  end
+  def show; end
 
   # GET /institutes/new
   # GET /institutes/new.json
-  def new
-    @institute = Institute.new
-
-    respond_to do |format|
-      format.html # new.html.haml
-      format.json { render json: @institute }
-    end
-  end
+  def new; end
 
   # GET /institutes/1/edit
   def edit; end
@@ -45,8 +33,6 @@ class InstitutesController < ApplicationController
   # POST /institutes
   # POST /institutes.json
   def create
-    @institute = Institute.new(params[:institute])
-
     respond_to do |format|
       if @institute.save
         format.html { redirect_to @institute, notice: 'Institute was successfully created.' }
