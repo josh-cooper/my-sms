@@ -1,2 +1,3 @@
-%h1 Institutes#index
-%p Find me in app/views/institutes/index.html.haml
+- display_attrs = %i[id name]
+= render partial: 'shared/crud_models',
+  locals: {model_class: Institute, model_collection: @institutes, display_attrs: display_attrs}
