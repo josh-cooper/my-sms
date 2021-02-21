@@ -115,8 +115,8 @@ RSpec.describe InstitutesController, type: :controller do
     end
 
     it 'redirects to the institutes list' do
-      should be_redirect
-      should redirect_to(institutes_url)
+      is_expected.to be_redirect
+      is_expected.to redirect_to(institutes_url)
     end
   end
 end
