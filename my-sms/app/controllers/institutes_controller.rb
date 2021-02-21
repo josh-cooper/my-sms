@@ -1,9 +1,10 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 class InstitutesController < ApplicationController
   decorates_assigned :institute
 
   before_filter :load_institute, except: %i[index]
+  before_render :flash_errors, only: %i[edit create update]
 
   # GET /institutes
   # GET /institutes.json
@@ -88,5 +89,9 @@ class InstitutesController < ApplicationController
                  else
                    Institute.new(params[:institute])
     end
+  end
+
+  def flash_errors
+    super(@institute)
   end
 end
