@@ -1,3 +1,7 @@
--  display_attrs = %i[id name]
+:ruby
+  display_attrs = %i[id name courses]
+  display_ovrd = {
+  courses: { value: render(partial: 'course', collection: @institute.courses) }
+  }
 = render partial: 'shared/model_attr_list',
-  locals: {model_instance: @institute, display_attrs: display_attrs, display_ovrd: nil}
+  locals: {model_instance: @institute, display_attrs: display_attrs, display_ovrd: display_ovrd}
