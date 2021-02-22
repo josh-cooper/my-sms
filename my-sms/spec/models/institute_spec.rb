@@ -10,5 +10,6 @@ RSpec.describe Institute, type: :model do
   context 'with valid params' do
     it { is_expected.to be_valid }
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to have_many(:courses) }
   end
 end
