@@ -1,5 +1,9 @@
 = form_for @course, html: { class: "form-horizontal course" } do |f|
   %div.form-group
+    = f.label :institute, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.collection_select(:institute_id, Institute.all, :id, :name, class: 'form-control')
+  %div.form-group
     = f.label :name, class: 'control-label col-lg-2'
     %div.col-lg-10
       = f.text_field :name, class: 'form-control'
