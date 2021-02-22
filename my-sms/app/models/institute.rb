@@ -8,4 +8,8 @@ class Institute < ActiveRecord::Base
   validates :name, presence: true
 
   DEFAULT_PER_PAGE = 10
+
+  def to_s
+    name
+  end
 end
