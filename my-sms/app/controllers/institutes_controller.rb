@@ -6,8 +6,6 @@ class InstitutesController < ApplicationController
   before_filter :load_institute, except: %i[index]
   before_render :flash_errors, only: %i[edit create update]
 
-  # GET /institutes
-  # GET /institutes.json
   def index
     @institutes = InstituteDecorator.decorate_collection(
       Institute.paginate(page: params[:page], per_page: Institute::DEFAULT_PER_PAGE)
@@ -19,19 +17,12 @@ class InstitutesController < ApplicationController
     end
   end
 
-  # GET /institutes/1
-  # GET /institutes/1.json
   def show; end
 
-  # GET /institutes/new
-  # GET /institutes/new.json
   def new; end
 
-  # GET /institutes/1/edit
   def edit; end
 
-  # POST /institutes
-  # POST /institutes.json
   def create
     respond_to do |format|
       if @institute.save
@@ -44,8 +35,6 @@ class InstitutesController < ApplicationController
     end
   end
 
-  # PUT /institutes/1
-  # PUT /institutes/1.json
   def update
     respond_to do |format|
       if @institute.update_attributes(params[:institute])
@@ -58,8 +47,6 @@ class InstitutesController < ApplicationController
     end
   end
 
-  # DELETE /institutes/1
-  # DELETE /institutes/1.json
   def destroy
     @institute.destroy
 
