@@ -10,8 +10,6 @@ class Course < ActiveRecord::Base
 
   validate :end_date_after_start
 
-  DEFAULT_PER_PAGE = 10
-
   def end_date_after_start
     return if end_date.blank? || start_date.blank?
 

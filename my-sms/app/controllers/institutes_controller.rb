@@ -8,7 +8,7 @@ class InstitutesController < ApplicationController
 
   def index
     @institutes = InstituteDecorator.decorate_collection(
-      Institute.paginate(page: params[:page], per_page: Institute::DEFAULT_PER_PAGE)
+      Institute.paginate(page: params[:page], per_page: DEFAULT_PER_PAGE)
     )
 
     respond_to do |format|

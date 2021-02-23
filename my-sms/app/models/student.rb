@@ -13,8 +13,6 @@ class Student < ActiveRecord::Base
                               message: 'Must be a valid email' }
   validates :birth_date, presence: true
 
-  DEFAULT_PER_PAGE = 10
-
   # defer to title name by default
   def title(model = false)
     model ? super : super&.name
