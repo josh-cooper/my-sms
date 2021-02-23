@@ -79,10 +79,6 @@ RSpec.describe CoursesController, type: :controller do
                          allocation: 5
                        })
       end
-      # let!(:course) do
-      #   create(:course, first_name: 'John', last_name: 'New_name', gender: 'f')
-      # end
-      # let(:new_attributes) { attributes_for(:course).stringify_keys }
       let(:attr_names) do
         %w[
           allocation
