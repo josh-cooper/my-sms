@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   attr_accessible :institute_id, :allocation, :description, :end_date, :name, :number_of_semesters, :start_date
 
   belongs_to :institute
+  has_many :notes, as: :notable
 
   validates :name, presence: true
   validates :number_of_semesters, presence: true

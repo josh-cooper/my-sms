@@ -4,6 +4,7 @@ class Institute < ActiveRecord::Base
   attr_accessible :name, :courses
 
   has_many :courses
+  has_many :notes, as: :notable
 
   validates :name, presence: true
 
