@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = CourseDecorator.decorate_collection(
-      Course.paginate(page: params[:page], per_page: Course::DEFAULT_PER_PAGE)
+      Course.paginate(page: params[:page], per_page: DEFAULT_PER_PAGE)
     )
 
     respond_to do |format|

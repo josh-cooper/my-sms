@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 MySms::Application.routes.draw do
   resources :students
   resources :courses
+  resources :institutes
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
