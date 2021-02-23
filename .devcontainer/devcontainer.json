@@ -4,7 +4,7 @@
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
-		"..\\docker-compose.yml",
+		"../docker-compose.yml",
 		"docker-compose.yml"
 	],
 	// The 'service' property is the name of the service for the container that VS Code should
@@ -25,7 +25,18 @@
 		"groksrc.ruby",
 		"wingrunr21.vscode-ruby",
 		"redhat.vscode-yaml",
-		"ethansk.restore-terminals"
+		"ethansk.restore-terminals",
+		"michelemelluso.code-beautifier",
+		"karunamurti.haml",
+		"kaiwood.endwise",
+		"aliariff.vscode-erb-beautify",
+		"eamodio.gitlens",
+		"ecmel.vscode-html-css",
+		"yzhang.markdown-all-in-one",
+		"cweijan.vscode-mysql-client2",
+		"connorshea.vscode-ruby-test-adapter",
+		"redhat.vscode-yaml",
+		"mutantdino.resourcemonitor"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
