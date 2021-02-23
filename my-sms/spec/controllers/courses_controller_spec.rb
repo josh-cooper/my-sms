@@ -134,8 +134,8 @@ RSpec.describe CoursesController, type: :controller do
     end
 
     it 'redirects to the courses list' do
-      should be_redirect
-      should redirect_to(courses_url)
+      is_expected.to be_redirect
+      is_expected.to redirect_to(courses_url)
     end
   end
 end
