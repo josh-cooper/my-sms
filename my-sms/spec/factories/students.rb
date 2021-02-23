@@ -10,7 +10,7 @@ FactoryBot.define do
     birth_date 10.years.ago
     gender { ['male', 'female', nil].sample }
   end
-  factory :student_demo, class: :student do
+  trait :demo do
     title_id { [nil, *Title.all.map(&:id)].sample }
     first_name { Faker::Name.first_name }
     middle_name { [nil, Faker::Name.middle_name].sample }
