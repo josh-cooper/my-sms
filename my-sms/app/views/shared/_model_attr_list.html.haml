@@ -1,3 +1,10 @@
+-# Display attr list of ActiveRecord model
+-# Locals: model_class, model_instance, display_attrs, display_ovrd (display override)
+-# Display display_attrs of model_instance.
+-# Requires model_class to be specified to humanise names and access correct routes for model.
+-# Pass hash display_ovrd with attr names to override the default display in the %format:
+-# { attr_name1: {heading: , value: }, ... }
+
 - model_class = model_instance.class
 .page-header
   %h1=t '.title', default: model_class.model_name.human.titleize
