@@ -1,0 +1,30 @@
+= form_for @course, html: { class: "form-horizontal course" } do |f|
+  %div.form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :name, class: 'form-control'
+  %div.form-group
+    = f.label :description, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.text_field :description, class: 'form-control'
+  %div.form-group
+    = f.label :number_of_semesters, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.number_field :number_of_semesters, class: 'form-control form-control-no-width'
+  %div.form-group
+    = f.label :allocation, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.number_field :allocation, class: 'form-control form-control-no-width'
+  %div.form-group
+    = f.label :start_date, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.date_select :start_date, class: 'form-control'
+  %div.form-group
+    = f.label :end_date, class: 'control-label col-lg-2'
+    %div.col-lg-10
+      = f.date_select :end_date, class: 'form-control'
+  %div.form-group
+    %div.col-lg-offset-2.col-lg-10
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to t('.cancel', default: t("helpers.links.cancel")),
+        courses_path, class: 'btn btn-default'

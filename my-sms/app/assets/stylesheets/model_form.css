@@ -1,0 +1,7 @@
+/*
+* default styles for model forms
+*/
+
+.form-control-no-width {
+  width: unset
+}

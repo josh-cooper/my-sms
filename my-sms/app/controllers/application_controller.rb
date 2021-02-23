@@ -17,4 +17,12 @@ class ApplicationController < ActionController::Base
       super(*args)
     end
   end
+
+  def flash_errors(model_instance)
+    return unless model_instance&.errors&.full_messages
+
+    model_instance.errors.full_messages.each do |error|
+      (flash[:error] ||= []) << error
+    end
+  end
 end

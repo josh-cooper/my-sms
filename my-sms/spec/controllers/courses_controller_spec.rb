@@ -79,10 +79,6 @@ RSpec.describe CoursesController, type: :controller do
                          allocation: 5
                        })
       end
-      # let!(:course) do
-      #   create(:course, first_name: 'John', last_name: 'New_name', gender: 'f')
-      # end
-      # let(:new_attributes) { attributes_for(:course).stringify_keys }
       let(:attr_names) do
         %w[
           allocation
@@ -116,6 +112,26 @@ RSpec.describe CoursesController, type: :controller do
         is_expected.to be_success
         is_expected.to render_template('edit')
       end
+
+      it 'should propagate model errors to an error flash' do
+        expect { subject }.to change { flash[:error] }.from(nil).to(['End date must be after start date'])
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let!(:course) { create(:course) }
+    subject { delete :destroy, { id: course.to_param } }
+
+    # before { course }
+
+    it 'destroys the requested course' do
+      expect { subject }.to change(Course, :count).by(-1)
+    end
+
+    it 'redirects to the courses list' do
+      is_expected.to be_redirect
+      is_expected.to redirect_to(courses_url)
     end
   end
 end
