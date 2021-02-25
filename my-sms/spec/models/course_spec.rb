@@ -25,7 +25,7 @@ RSpec.describe Course, type: :model do
     it { is_expected.to be_valid }
   end
 
-  context 'with an invalid institute' do
+  context 'with an institute that has invalid params' do
     let(:institute) do
       institute = build(:institute, { name: nil })
       institute.save(validate: false)
