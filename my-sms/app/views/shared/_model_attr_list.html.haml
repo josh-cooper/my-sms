@@ -11,7 +11,7 @@
 %dl.dl-horizontal
   - display_attrs.each do |e|
     %dt.model-list-heading
-      %span.model-list-heading-text #{display_ovrd&.dig(e, :heading) || model_class.human_attribute_name(e)} :
+      %span.model-list-heading-text= display_ovrd&.dig(e, :heading) || model_class.human_attribute_name(e)
     %dd.model-list-value= display_ovrd&.dig(e, :value) || model_instance.send(e)
 = link_to t('.back', default: t("helpers.links.back")), Rails.application.routes.url_helpers.send("#{model_class.model_name.pluralize.downcase}_path"), class: 'btn btn-default'
 = link_to t('.edit', default: t("helpers.links.edit")), Rails.application.routes.url_helpers.send("edit_#{model_class.model_name.downcase}_path", model_instance), class: 'btn btn-default'
