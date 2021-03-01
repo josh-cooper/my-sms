@@ -1,9 +1,22 @@
 # frozen_string_literal: true
 
 MySms::Application.routes.draw do
-  resources :students
+  get 'comments/create'
+
+  get 'comments/update'
+
+  get 'comments/destroy'
+
+  def note_resource
+    resources(:notes, notable_type: parent_resource.name.classify)
+  end
+
+  resources :students do
+    note_resource
+  end
   resources :courses
   resources :institutes
+  resources :notes, only: %i[create update destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
