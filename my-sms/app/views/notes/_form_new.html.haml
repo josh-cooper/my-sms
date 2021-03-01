@@ -1,0 +1,11 @@
+= form_for([notable, Note.new]) do |f|
+    %div.field
+        =f.label :title
+        %br
+        =f.text_field :title
+    %div.field
+        =f.label :content
+        %br
+        =f.text_field :content
+    %div.actions
+        =f.submit
