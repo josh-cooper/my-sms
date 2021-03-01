@@ -15,17 +15,18 @@
         - (display_attrs - [:id]).each do |a|
           %td= e.send(a)
         %td
-          = link_to 'Show', e, class: 'btn btn-default btn-xs'
-          = link_to t('.edit', default: t("helpers.links.edit")),
-            Rails.application.routes.url_helpers.send("edit_#{model_class.name.downcase}_path", e),
-            class: 'btn btn-default btn-xs'
-          = link_to t('.destroy', default: t("helpers.links.destroy")),
-            Rails.application.routes.url_helpers.send("#{model_class.name.downcase}_path", e),
-            method: :delete,
-            data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
-            class: 'btn btn-xs btn-danger'
+          -url_helpers = Rails.application.routes.url_helpers
+          = render partial: 'shared/crud_button',
+            locals: { name: 'show', link_args: ["#{model_class.name.downcase}_path", e], class_name: 'btn-default btn-xs' }
+          = render partial: 'shared/crud_button',
+            locals: { name: 'edit', link_args: ["edit_#{model_class.name.downcase}_path", e], class_name: 'btn-default btn-xs' }
+          = render partial: 'shared/crud_button',
+            locals: { name: 'destroy', link_args: ["#{model_class.name.downcase}_path", e],
+            class_name: 'btn-xs btn-danger',
+            kwargs: { method: :delete,
+            data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } } }
+
 = will_paginate model_collection
 %br
-= link_to t('.new', default: t("helpers.links.new")),
-  Rails.application.routes.url_helpers.send("new_#{model_class.name.downcase}_path"),
-  class: 'btn btn-primary'
+= render partial: 'shared/crud_button',
+  locals: { name: 'new', link_args: ["new_#{model_class.name.downcase}_path"], class_name: 'btn-primary' }

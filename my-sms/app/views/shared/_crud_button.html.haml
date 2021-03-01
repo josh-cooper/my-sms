@@ -1,0 +1,5 @@
+- kwargs = kwargs || {}
+= link_to(t(".#{name}", default: t("helpers.links.#{name}")),
+  Rails.application.routes.url_helpers.send(*link_args),
+  class: 'btn ' + class_name.to_s,
+  **kwargs) if Rails.application.routes.url_helpers.respond_to?(*link_args)

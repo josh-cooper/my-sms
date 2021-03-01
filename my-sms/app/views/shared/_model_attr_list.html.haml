@@ -18,13 +18,11 @@
 
 -# action buttons
 -# back, edit destroy
-= link_to t('.back', default: t("helpers.links.back")), Rails.application.routes.url_helpers.send("#{model_class.model_name.pluralize.downcase}_path"), class: 'btn btn-default'
-= link_to t('.edit', default: t("helpers.links.edit")), Rails.application.routes.url_helpers.send("edit_#{model_class.model_name.downcase}_path", model_instance), class: 'btn btn-default'
-= link_to t('.destroy', default: t("helpers.links.destroy")),
-  Rails.application.routes.url_helpers.send("#{model_class.model_name.downcase}_path", model_instance),
-  method: 'delete',
-  data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
-  class: 'btn btn-danger'
+= render partial: 'shared/crud_button', locals: { name: 'back', link_args: ["#{model_class.model_name.pluralize.downcase}_path"], class_name: 'btn-default' }
+= render partial: 'shared/crud_button', locals: { name: 'edit', link_args: ["edit_#{model_class.model_name.downcase}_path", model_instance], class_name: 'btn-default' }
+= render partial: 'shared/crud_button', locals: { name: 'destroy', link_args: ["#{model_class.model_name.downcase}_path", model_instance], class_name: 'btn-danger',
+  kwargs: { method: 'delete', data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } } }
+
 -# Add note
 %a.btn.btn-default{'data-toggle': 'collapse', href: '#addComment', 'aria-expanded': 'false'} Add Note
 %div.collapse#addComment
