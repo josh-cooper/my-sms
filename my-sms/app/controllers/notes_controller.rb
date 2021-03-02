@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 class NotesController < ApplicationController
   before_filter :load_notable
@@ -22,7 +22,7 @@ class NotesController < ApplicationController
       else
         # propagate note errors to root model, if possible
         flash_errors(@note)
-        format.html { redirect_to :back }
+        format.html { redirect_to @note.notable || :back }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
@@ -34,7 +34,7 @@ class NotesController < ApplicationController
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to @note.notable || :back }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
