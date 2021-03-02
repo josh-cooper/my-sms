@@ -6,4 +6,8 @@ class InstituteDecorator < Draper::Decorator
   def self.collection_decorator_class
     PaginatingDecorator
   end
+
+  def to_s
+    name
+  end
 end
