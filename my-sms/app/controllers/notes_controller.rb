@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
-  before_filter :load_note
+  before_filter :load_notable
+  before_filter :load_note, except: %i[index]
+
+  def index
+    notes_query = @notable_id && { notable_type: @notable_type, notable_id: @notable_id }
+    @notes = Note.where(notes_query).paginate(page: params[:page], per_page: Institute::DEFAULT_PER_PAGE)
+
+    respond_to do |format|
+      format.html # index.html.haml
+      format.json { render json: @notes }
+    end
+  end
 
   def create
     respond_to do |format|
@@ -38,14 +49,18 @@ class NotesController < ApplicationController
     end
   end
 
+  def load_notable
+    @notable_type = params[:notable_type]
+    @notable_id = @notable_type && params["#{@notable_type.downcase}_id"]
+  end
+
   def load_note
     @note = if params[:id]
               Note.find(params[:id])
             else
               note = Note.new(params[:note])
-              notable_type = params[:notable_type]
-              note[:notable_type] = notable_type
-              note[:notable_id] = notable_type && params["#{notable_type.downcase}_id"]
+              note[:notable_type] = @notable_type
+              note[:notable_id] = @notable_id
               note
     end
   end
