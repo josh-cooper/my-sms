@@ -7,8 +7,8 @@ MySms::Application.routes.draw do
 
   get 'comments/destroy'
 
-  def note_resource
-    resources(:notes, notable_type: parent_resource.name.classify)
+  def note_resource(**kwargs)
+    resources(:notes, notable_type: parent_resource.name.classify, only: %i[index create update destroy], **kwargs)
   end
 
   resources :students do
