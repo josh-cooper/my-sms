@@ -12,12 +12,16 @@ FactoryBot.define do
     end_date 2.years.ago.to_date
     institute
 
-    factory :course_demo, class: :course do
+    trait :demo do
       name { Faker::Educator.course_name }
       description { Faker::Lorem.paragraph }
       start_date Faker::Date.between(from: '2014-01-1', to: '2014-06-15')
       end_date Faker::Date.between(from: '2014-06-16', to: '2014-12-30')
-      institute { association :institute_demo }
+      institute { association(:institute, :demo) }
+    end
+
+    trait :no_institute do
+      institute nil
     end
   end
 end

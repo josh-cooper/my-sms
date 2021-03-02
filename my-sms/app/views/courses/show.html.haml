@@ -1,5 +1,5 @@
 :ruby
-  display_attrs = %i[id name description number_of_semesters allocation start_date end_date]
+  display_attrs = %i[id name description number_of_semesters allocation start_date end_date institute]
   display_ovrd = {
     number_of_semesters: { heading: Course.human_attribute_name('Semesters') },
     start_date: { value: l(@course.start_date, format: :long) },
