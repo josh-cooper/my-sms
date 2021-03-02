@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20210222001359) do
+ActiveRecord::Schema.define(:version => 20210225215538) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(:version => 20210222001359) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "notes", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "notable_id"
+    t.string   "notable_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
 
   create_table "students", :force => true do |t|
     t.string   "title_old"

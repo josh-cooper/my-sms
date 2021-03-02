@@ -4,6 +4,7 @@ class Student < ActiveRecord::Base
   attr_accessible :title_id, :first_name, :middle_name, :last_name, :email,
                   :birth_date, :gender
   belongs_to :title
+  has_many :notes, as: :notable
 
   validates :first_name, presence: true
   validates :last_name, presence: true
