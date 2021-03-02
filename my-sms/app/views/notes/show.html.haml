@@ -1,0 +1,4 @@
+:ruby
+  display_attrs = %i[id title content]
+= render partial: 'shared/model_attr_list',
+  locals: {model_instance: @note, display_attrs: display_attrs, display_ovrd: {}}

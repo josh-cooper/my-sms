@@ -16,7 +16,7 @@ MySms::Application.routes.draw do
   end
   resources :courses
   resources :institutes
-  resources :notes, only: %i[create update destroy]
+  resources :notes, only: %i[create show update destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
