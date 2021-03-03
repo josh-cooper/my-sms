@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 MySms::Application.routes.draw do
-  get 'comments/create'
-
-  get 'comments/update'
-
-  get 'comments/destroy'
-
   def note_resource(**kwargs)
     resources(:notes, notable_type: parent_resource.name.classify, only: %i[index create update destroy], **kwargs)
   end
