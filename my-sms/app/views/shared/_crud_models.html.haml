@@ -25,6 +25,8 @@
             class_name: 'btn-xs btn-danger',
             kwargs: { method: :delete,
             data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } } }
+          = render partial: 'shared/crud_button',
+            locals: { name: 'add note', link_args: ["new_student_note_path", e], class_name: 'btn-default btn-xs' }
 
 = will_paginate model_collection
 %br
