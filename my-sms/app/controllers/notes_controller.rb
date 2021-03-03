@@ -14,6 +14,10 @@ class NotesController < ApplicationController
     end
   end
 
+  def new
+    @notable_instance = @notable_type.classify.constantize.find(@notable_id)
+  end
+
   def create
     respond_to do |format|
       if @note.save
