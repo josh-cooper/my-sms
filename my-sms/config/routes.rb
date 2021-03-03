@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 MySms::Application.routes.draw do
-  def note_resource(**kwargs)
-    resources(:notes, notable_type: parent_resource.name.classify, only: %i[new index create update destroy], **kwargs)
-  end
-
   resources :students do
-    note_resource
+    resources :notes
   end
   resources :courses
   resources :institutes
