@@ -31,8 +31,6 @@ class CoursesController < ApplicationController
   # GET /courses/new
   # GET /courses/new.json
   def new
-    @course = Course.new
-
     respond_to do |format|
       format.html # new.html.haml
       format.json { render json: @course }

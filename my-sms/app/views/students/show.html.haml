@@ -1,7 +1,8 @@
 :ruby
-  display_attrs = %i[id title first_name middle_name last_name email birth_date gender]
+  display_attrs = %i[id title first_name middle_name last_name email birth_date gender notes]
   display_ovrd = {
-    birth_date: { value: l(@student.birth_date, format: :long) }
+    birth_date: { value: l(@student.birth_date, format: :long) },
+    notes: { value: render(@student.notes) || 'There are no notes.' }
   }
 
 = render partial: 'shared/model_attr_list',

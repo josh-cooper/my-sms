@@ -1,0 +1,3 @@
+- display_attrs = %i[id title content]
+= render partial: 'shared/crud_models',
+  locals: {model_class: Note, model_collection: @notes, display_attrs: display_attrs}
