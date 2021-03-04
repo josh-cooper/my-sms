@@ -99,11 +99,10 @@ RSpec.describe StudentsController, type: :controller do
     subject { put :update, { id: student.to_param, student: new_attributes } }
 
     context 'with valid params' do
-      let(:new_attributes) { attributes_for(:student) }
       let!(:student) do
         FactoryBot.create(:student, first_name: 'John', last_name: 'New_name', gender: 'f')
       end
-      let(:new_attributes) { FactoryBot.attributes_for(:student).stringify_keys }
+      let(:new_attributes) { attributes_for(:student).stringify_keys }
       let(:attr_names) { %w[first_name last_name gender] }
       let(:new_attr_values) { new_attributes.fetch_values(*attr_names) }
 
@@ -116,6 +115,26 @@ RSpec.describe StudentsController, type: :controller do
       it 'redirects to the student' do
         is_expected.to be_redirect
         is_expected.to redirect_to(student)
+      end
+    end
+
+    context 'with valid params for a new note' do
+      let(:notes) { [title: 'Note title', content: 'Note content.'] }
+      let(:new_attributes) { { notes_attributes: notes } }
+
+      it 'adds a new note to the student' do
+        expect { subject }.to change { student.notes.count }.by(1)
+      end
+    end
+
+    context 'with valid params for a new note and existing notes on the Student' do
+      let!(:original_notes) { create_list(:note, 1, :for_student) }
+      let(:student) { original_notes.first.notable }
+      let(:new_notes) { [title: 'Note title', content: 'Note content.'] }
+      let(:new_attributes) { { notes_attributes: new_notes } }
+
+      it 'adds a new note to the student' do
+        expect { subject }.to change { student.notes.count }.by(1)
       end
     end
 
