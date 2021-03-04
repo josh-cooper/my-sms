@@ -2,11 +2,11 @@
 
 MySms::Application.routes.draw do
   resources :students do
-    resources :notes
+    resources :notes, only: %i[create new destroy]
   end
   resources :courses
   resources :institutes
-  resources :notes, only: %i[create show update destroy]
+  resources :notes, only: %i[show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

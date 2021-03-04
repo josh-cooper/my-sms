@@ -4,16 +4,6 @@ class NotesController < ApplicationController
   before_filter :load_notable
   before_filter :load_note, except: %i[index]
 
-  def index
-    notes_query = @notable_id && { notable_type: @notable_type, notable_id: @notable_id }
-    @notes = Note.where(notes_query).paginate(page: params[:page], per_page: Institute::DEFAULT_PER_PAGE)
-
-    respond_to do |format|
-      format.html # index.html.haml
-      format.json { render json: @notes }
-    end
-  end
-
   def new
     @notable_instance = @notable_type.classify.constantize.find(@notable_id)
   end
@@ -48,7 +38,7 @@ class NotesController < ApplicationController
     @note.destroy
 
     respond_to do |format|
-      format.html { redirect_to notes_url }
+      format.html { redirect_to @note.notable }
       format.json { head :no_content }
     end
   end
