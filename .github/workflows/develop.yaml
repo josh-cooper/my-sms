@@ -40,3 +40,14 @@ jobs:
         run: |
           cd my-sms/
           bundler exec rspec
+      - name: Run cypress
+        uses: cypress-io/github-action@v2
+        with:
+          build: |
+            cd my-sms/
+            bundle exec rake db:create RAILS_ENV=test
+            bundle exec rake db:migrate RAILS_ENV=test
+            bundle exec rails server --port 5002
+          wait-on: "http://localhost:5002"
+          project: ./my-sms/spec
+          spec: ./my-sms/spec/cypress/integration/*.spec.js
