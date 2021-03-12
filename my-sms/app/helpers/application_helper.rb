@@ -55,7 +55,7 @@ module ApplicationHelper
 
     # explicity assign pagination class to prevent breaking change
     def html_container(html)
-      tag(:dive, html, container_attributes.merge(class: 'pagination'))
+      tag(:div, html, container_attributes.merge(class: 'pagination'))
     end
   end
 end
