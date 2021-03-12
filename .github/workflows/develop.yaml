@@ -43,9 +43,9 @@ jobs:
       - name: Run cypress
         uses: cypress-io/github-action@v2
         with:
-          # build: |
-          #   cd my-sms/
-          #   bundle exec rake test:prepare
+          build: |
+            cd my-sms/
+            bundle exec rake test:prepare
           start: |
             cd my-sms/
             bundle exec rails server --port 5002
