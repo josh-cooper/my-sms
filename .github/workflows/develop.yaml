@@ -50,5 +50,5 @@ jobs:
             cd my-sms/
             bundle exec rails server --port 5002
           wait-on: "http://localhost:5002"
-          project: ./my-sms/spec
-          spec: ./my-sms/spec/cypress/integration/*.spec.js
+          project: ./spec
+          spec: ./spec/cypress/integration/*.spec.js
