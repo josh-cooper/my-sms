@@ -45,11 +45,9 @@ jobs:
         with:
           install: false
           build: |
-            cd my-sms/
-            bundle exec rake db:create RAILS_ENV=test
-            bundle exec rake db:migrate RAILS_ENV=test
-            cd ..
             npm install
+            cd my-sms/
+            bundle exec rake test:prepare
           start: |
             cd my-sms/
             bundle exec rails server --port 5002
