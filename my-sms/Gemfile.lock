@@ -49,6 +49,12 @@ GEM
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
     concurrent-ruby (1.1.8)
+    cypress-on-rails (1.9.0)
+      rack
+    database_cleaner (1.99.0)
+    database_cleaner-active_record (1.99.0)
+      activerecord
+      database_cleaner (~> 1.99.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.4.4)
@@ -216,6 +222,8 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 3.2.1)
+  cypress-on-rails
+  database_cleaner-active_record
   draper
   factory_bot_rails (~> 4.10.0)
   faker
