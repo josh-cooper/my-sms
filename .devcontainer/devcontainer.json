@@ -36,7 +36,12 @@
 		"cweijan.vscode-mysql-client2",
 		"connorshea.vscode-ruby-test-adapter",
 		"redhat.vscode-yaml",
-		"mutantdino.resourcemonitor"
+		"mutantdino.resourcemonitor",
+		"andrew-codes.cypress-snippets",
+		"shelex.vscode-cy-helper",
+		"mgmcdermott.vscode-language-babel",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],

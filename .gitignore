@@ -11,6 +11,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 my-sms/backups/*
+.DS_Store
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -69,3 +70,8 @@ yarn-debug.log*
 
 # Ignore gem binaries
 /my-sms/bin
+
+# Ignore cypress files
+**/cypress/**/examples/*.spec.js
+/my-sms/log/*.json
+/my-sms/vendor/bundle

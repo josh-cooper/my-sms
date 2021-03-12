@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     image: mysql:5.6
@@ -8,7 +8,7 @@ services:
     ports:
       - "3306:3306"
 
-  rails:
+  rails: &rails
     build: .
     command: tail -f /dev/null
     volumes:
@@ -21,8 +21,19 @@ services:
       DB_PORT: 3306
     ports:
       - "3000:3000"
-      # Ports required for debugging
-      - "1234:1234"
-      - "26166:26168"
     depends_on:
       - db
+
+  rails_test:
+    <<: *rails
+    # working_dir: /mySMS/my-sms
+    # command: /bin/sh -c "cd ./mySMS/my-sms && bundle exec rails server"
+    environment:
+      DB_HOST: db
+      DB_PWD: example
+      DB_USER_NAME: root
+      DB_PORT: 3306
+      RAILS_ENV: test
+      CYPRESS: 1
+    ports:
+      - "5002:3000"
