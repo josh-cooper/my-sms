@@ -43,11 +43,13 @@ jobs:
       - name: Run cypress
         uses: cypress-io/github-action@v2
         with:
+          install: false
           build: |
             cd my-sms/
             bundle exec rake db:create RAILS_ENV=test
             bundle exec rake db:migrate RAILS_ENV=test
             cd ..
+            npm install
           start: |
             cd my-sms/
             bundle exec rails server --port 5002
